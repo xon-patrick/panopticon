@@ -1,0 +1,51 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets.h
+secrets/
+*.pem
+*.key
+
+# Build outputs
+build/
+install/
+log/
+dist/
+bin/
+*.bin
+*.elf
+*.o
+*.a
+*.so
+*.hex
+*.map
+
+# Dependencies and caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pio/
+
+# Local tests and reports
+test/
+tests/
+coverage/
+.coverage
+htmlcov/
+
+# Editor and operating system files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.log

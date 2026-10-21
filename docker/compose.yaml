@@ -1,0 +1,39 @@
+name: panopticon
+
+services:
+  agent:
+    image: microros/micro-ros-agent:jazzy
+    network_mode: host
+    ipc: host
+    command: udp4 --port 8888 -v4
+    environment:
+      ROS_DOMAIN_ID: "0"
+    restart: unless-stopped
+
+  ros:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    ipc: host
+    environment:
+      ROS_DOMAIN_ID: "0"
+      ROS_LOCALHOST_ONLY: "0"
+    stdin_open: true
+    tty: true
+    command: bash
+    profiles: [tools]
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    ipc: host
+    environment:
+      ROS_DOMAIN_ID: "0"
+      ROS_LOCALHOST_ONLY: "0"
+    volumes:
+      - ../dashboard:/app/dashboard:ro
+    command: python3 /app/dashboard/server.py
+    restart: unless-stopped
